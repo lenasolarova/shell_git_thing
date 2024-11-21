@@ -1,11 +1,13 @@
-#!/bin/zsh
+#!/bin/sh
 
-current_time="$(date +"%B %d, %Y %T")"
-current_time_epoch="$(date +"%s")"
-#insert desired scheduled time here
-scheduled_time="$(date +"%B %d, %Y %T" -d 2024-11-21)"
-scheduled_time_epoch=$(date --date=$scheduled_time +%s)
-countdown=$((scheduled_time_epoch-current_time_epoch))
+current_time=$(date +"%B %d, %Y %T")
+current_time_epoch=$(date +"%s")
+#insert desired scheduled time here in format YYYY-MM-DD hh:mm:ss
+scheduled_time="2024-11-22 00:00:00"
+
+scheduled_time=$(date +"%B %d, %Y %T" -d "$scheduled_time")
+scheduled_time_epoch=$(date -u +%s -d "$scheduled_time")
+countdown=$(( scheduled_time_epoch-current_time_epoch ))
 
 echo "Current time: $current_time"
 echo "Scheduled time: $scheduled_time"
